@@ -5,6 +5,7 @@
 package vista.administrador.adminCrud;
 
 import conexion.dao.AeropuertoDaoImpl;
+import controlador.Controlador;
 import modelo.Aeropuerto;
 
 import java.awt.event.ActionEvent;
@@ -22,9 +23,9 @@ public class AerepuertoVista extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
 
-
-        AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
-        aeropuertoDao.mostrarAeropuertos(jTable2);
+        Controlador controlador = new Controlador() ;
+        //AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
+        controlador.mostrarAeropuertos(jTable2);
     }
 
     @SuppressWarnings("unchecked")
@@ -264,35 +265,32 @@ public class AerepuertoVista extends javax.swing.JFrame {
     }
 
     private void tbListaAeropuertosMouseClicked(java.awt.event.MouseEvent evt) {
-        AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
-        aeropuertoDao.seleccionarAeropuerto(jTable2, jTextField1, jTextField2, jTextField3);
+        Controlador controlador = new Controlador();
+        controlador.seleccionarAeropuerto(jTable2, jTextField1, jTextField2, jTextField3);
+
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Controlador controlador = new Controlador();
+        controlador.eliminar(jTextField1.getText());
 
-        AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
-        Aeropuerto aeropuerto = new Aeropuerto();
-        aeropuerto.setCodigoAeropuerto(jTextField1.getText());
-        aeropuertoDao.eliminar(aeropuerto);
         //JOptionPane.showMessageDialog(null, "Se elimino correctamente");
 
-        aeropuertoDao.mostrarAeropuertos(jTable2);
+        controlador.mostrarAeropuertos(jTable2);
 
     }
 
     private void jButton3ActionPerformed(ActionEvent evt) {
-        AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
-        Aeropuerto aero = new Aeropuerto(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
-        aeropuertoDao.modificar(aero);
-        System.out.println(aero.getCodigoAeropuerto());
-        aeropuertoDao.mostrarAeropuertos(jTable2);
+        Controlador controlador = new Controlador();
+        controlador.modificarAeropuerto(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
+        controlador.mostrarAeropuertos(jTable2);
+
     }
 
     private void jButton1ActionPerformed(ActionEvent evt) {
-        AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
-        Aeropuerto aeropuerto = new Aeropuerto(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
-        aeropuertoDao.insertar(aeropuerto);
-        aeropuertoDao.mostrarAeropuertos(jTable2);
+        Controlador controlador = new Controlador();
+        controlador.insertar(jTextField1.getText(), jTextField2.getText(), jTextField3.getText());
+        controlador.mostrarAeropuertos(jTable2);
     }
 
 

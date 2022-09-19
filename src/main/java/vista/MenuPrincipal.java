@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.Controlador;
 import vista.administrador.MenuAdministrador;
 import logica.CalculoRutaMasCorta;
 
@@ -163,8 +164,8 @@ public class MenuPrincipal extends JFrame {
             this.vueloTxtOrigen = vueloTxtOrigen;
             this.vueloTxtDestino = vueloTxtDestino;
         }
+        Controlador controlador = new  Controlador();
 
-        CalculoRutaMasCorta calculoRutaMasCorta = new CalculoRutaMasCorta();
 
 
         @Override
@@ -181,7 +182,7 @@ public class MenuPrincipal extends JFrame {
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(1);
 
-                ventana.SetTextEscribir(calculoRutaMasCorta.porDuracion(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
+                ventana.SetTextEscribir(controlador.MostrarRutaPorDuracion(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
                 setVisible(true);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(1);
@@ -210,6 +211,7 @@ public class MenuPrincipal extends JFrame {
             Random generador = new Random();
             // genera un numero aleatorio entre el 1000 y el 5000
             int numero = 1000 + generador.nextInt(1000);
+            Controlador controlador = new  Controlador();
 
 
             String texto = "";
@@ -219,7 +221,7 @@ public class MenuPrincipal extends JFrame {
                 Thread.sleep(numero);
                 System.out.println("origen "+vueloTxtOrigen+"destino"+vueloTxtDestino);
 
-                ventana.SetTextEscribir(calculoRutaMasCorta.porPrecio(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
+                ventana.SetTextEscribir(controlador.MostraRutaPorPrecio(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
                 setVisible(true);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(numero);

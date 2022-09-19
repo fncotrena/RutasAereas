@@ -5,6 +5,7 @@
 package vista.administrador.adminCrud;
 
 import conexion.dao.VueloDaoImpl;
+import controlador.Controlador;
 
 /**
  *
@@ -21,9 +22,8 @@ public class VueloVista extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
 
-
-        VueloDaoImpl vueloDao = new VueloDaoImpl();
-        vueloDao.mostrarVuelos(jTable2);
+        Controlador controlador = new Controlador();
+        controlador.mostrarVuelos(jTable2);
     }
 
     @SuppressWarnings("unchecked")
@@ -313,20 +313,22 @@ public class VueloVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VueloDaoImpl vueloDao = new VueloDaoImpl();
-        vueloDao.insertarVuelo(jTextField2, jTextField3,jTextField4,jTextField5,jTextField6,jTextField7,jTextField8);
-        vueloDao.mostrarVuelos(jTable2);
+        Controlador controlador = new Controlador();
+        controlador.insertarVuelo(jTextField2, jTextField3,jTextField4,jTextField5,jTextField6,jTextField7,jTextField8);
+        controlador.mostrarVuelos(jTable2);
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VueloDaoImpl vueloDao = new VueloDaoImpl();
-        vueloDao.elimnarVuelo(jTextField4);
-        vueloDao.mostrarVuelos(jTable2);
+        Controlador controlador = new Controlador();
+         controlador.eliminarVuelo(jTextField4);
+        controlador.mostrarVuelos(jTable2);
+
 
     }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VueloDaoImpl vueloDao = new VueloDaoImpl();
-        vueloDao.modificarVuelo(jTextField2, jTextField3,jTextField4,jTextField5,jTextField6,jTextField7,jTextField8);
-        vueloDao.mostrarVuelos(jTable2);
+        Controlador controlador = new Controlador();
+
+        controlador.modificarVuelo(jTextField2, jTextField3,jTextField4,jTextField5,jTextField6,jTextField7,jTextField8);
+        controlador.mostrarVuelos(jTable2);
 
     }
 
@@ -366,8 +368,9 @@ public class VueloVista extends javax.swing.JFrame {
     }
 
     private void tbListaVuelosMouseClicked(java.awt.event.MouseEvent evt) {
-        VueloDaoImpl vueloDao = new VueloDaoImpl();
-        vueloDao.seleccionarVuelo(jTable2, jTextField1, jTextField2, jTextField3,jTextField4,jTextField5,jTextField6,jTextField7,jTextField8);
+        Controlador controlador = new Controlador() ;
+
+        controlador.seleccionarVuelo(jTable2, jTextField1, jTextField2, jTextField3,jTextField4,jTextField5,jTextField6,jTextField7,jTextField8);
         jButton3.enable();
     }
 
