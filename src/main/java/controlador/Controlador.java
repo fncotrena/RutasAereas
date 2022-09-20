@@ -9,7 +9,6 @@ import modelo.Vuelo;
 import org.jgrapht.GraphPath;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class Controlador {
 

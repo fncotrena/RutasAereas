@@ -47,7 +47,7 @@ public class VueloDaoImpl implements Dao<Vuelo> {
 
 
     }
-/*
+
     @Override
     public void insertar(Vuelo a) {
 
@@ -72,12 +72,9 @@ public class VueloDaoImpl implements Dao<Vuelo> {
             }
 
 
-    }*/
-
-    @Override
-    public void insertar(Vuelo k) {
-
     }
+
+
 
     @Override
     public void modificar(Vuelo k) {

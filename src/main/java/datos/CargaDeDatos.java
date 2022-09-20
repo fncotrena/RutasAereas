@@ -86,4 +86,32 @@ public class CargaDeDatos {
         return rutasAereasGrafo;
     }
 
+    public  String[] getFile(String archivo) throws FileNotFoundException {
+        BufferedReader read = null;
+
+
+        String[] renglon = new String[3];
+        try {
+            read = new BufferedReader(new FileReader(archivo));
+
+            while ((line = read.readLine()) != null) {
+
+                renglon = line.split(cvsSplitBy);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (read != null) {
+                try {
+                    read.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return renglon;
+    }
+
+
 }

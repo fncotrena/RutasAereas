@@ -2,7 +2,6 @@ package vista;
 
 import controlador.Controlador;
 import vista.administrador.MenuAdministrador;
-import logica.CalculoRutaMasCorta;
 
 import java.awt.Color;
 
@@ -16,9 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.ActionListener;
 
-import java.awt.event.ActionEvent;
 import java.util.Objects;
 import java.util.Random;
 
@@ -26,20 +23,19 @@ public class MenuPrincipal extends JFrame {
 
 
     private final VentanaDetalleVuelo ventana = new VentanaDetalleVuelo();
-    private Controlador controlador = new Controlador();
-    private final JPanel contentPane;
     public String VueloTxtOrigen = " ";
     public String VueloTxtDestino = " ";
 
     public MenuPrincipal() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 450, 300);
-        contentPane = new JPanel();
+        JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JComboBox<String> comboBoxDest = new JComboBox<String>();
+        JComboBox<String> comboBoxDest = new JComboBox<>();
+        Controlador controlador = new Controlador();
         comboBoxDest.setModel(new DefaultComboBoxModel<>(controlador.aeropuestosComboBox()
         ));
         comboBoxDest.setBounds(237, 111, 176, 20);
@@ -60,10 +56,10 @@ public class MenuPrincipal extends JFrame {
         LabelError.setBounds(44, 159, 384, 16);
         contentPane.add(LabelError);
 
-        JComboBox<String> Tipo = new JComboBox<String>();
+        JComboBox<String> Tipo = new JComboBox<>();
         contentPane.add(Tipo);
         Tipo.setEnabled(true);
-        JComboBox<String> comboBoxOrg = new JComboBox<String>();
+        JComboBox<String> comboBoxOrg = new JComboBox<>();
         comboBoxOrg.setBounds(25, 111, 176, 20);
         contentPane.add(comboBoxOrg);
 
@@ -72,12 +68,10 @@ public class MenuPrincipal extends JFrame {
         Tipo.setModel(new DefaultComboBoxModel<>(new String[]{"Duración", "Precio", "Escalas"}));
         Tipo.setBounds(54, 44, 89, 20);
         JButton btnNewButton_1 = new JButton("Salir");
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                // System.out.println(g);
+        btnNewButton_1.addActionListener(arg0 -> {
+            // System.out.println(g);
 
-                System.exit(0);
-            }
+            System.exit(0);
         });
         btnNewButton_1.setBounds(68, 211, 89, 23);
         contentPane.add(btnNewButton_1);
@@ -93,8 +87,8 @@ public class MenuPrincipal extends JFrame {
         btnAdmin.setBounds(269, 30, 150, 23);
         contentPane.add(btnAdmin);
         btnBuscar.addActionListener(e -> {
-            String selecOr = comboBoxOrg.getSelectedItem().toString();
-            String selecDe = comboBoxDest.getSelectedItem().toString();
+            String selecOr = Objects.requireNonNull(comboBoxOrg.getSelectedItem()).toString();
+            String selecDe = Objects.requireNonNull(comboBoxDest.getSelectedItem()).toString();
             String[] separador = selecOr.split(",", 0);
             String vueloOrigen = separador[1];
             separador = selecDe.split(",", 0);
@@ -114,18 +108,14 @@ public class MenuPrincipal extends JFrame {
                 try {
                     switch (Objects.requireNonNull(Tipo.getSelectedItem()).toString()) {
                         case "Precio" -> {
-                           // CalculoRutaMasCorta calculoRutaMasCorta = new CalculoRutaMasCorta();
-                           System.out.println(vueloOrigen+ vueloDestino);
+
                             ProcesoRecorridoPorPrecio procesoRecorridoPorPrecio = new ProcesoRecorridoPorPrecio(vueloOrigen, vueloDestino);
                             procesoRecorridoPorPrecio.run();
-                            System.out.println(VueloTxtOrigen);
+
 
                         }
-                        case "Duracion" -> {
-                            CalculoRutaMasCorta calculoRutaMasCorta = new CalculoRutaMasCorta();
-                          //  System.out.println( calculoRutaMasCorta.porDuracion("MDQ","AEP"));
+                        case "Duración" -> {
                             ProcesoRecorridoPorDuracion procesoRecorridoPorDuracion = new ProcesoRecorridoPorDuracion(vueloOrigen, vueloDestino);
-
                             procesoRecorridoPorDuracion.run();
 
 
@@ -144,12 +134,10 @@ public class MenuPrincipal extends JFrame {
             }
 
         });
-        btnAdmin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                MenuAdministrador menuAdministrador = new MenuAdministrador();
-                menuAdministrador.setVisible(true);
+        btnAdmin.addActionListener(arg0 -> {
+            MenuAdministrador menuAdministrador = new MenuAdministrador();
+            menuAdministrador.setVisible(true);
 
-            }
         });
 
     }
@@ -158,8 +146,8 @@ public class MenuPrincipal extends JFrame {
 
     private class ProcesoRecorridoPorDuracion implements Runnable {
 
-        public String vueloTxtOrigen = " ";
-        public String vueloTxtDestino = " ";
+        public String vueloTxtOrigen;
+        public String vueloTxtDestino;
 
         public ProcesoRecorridoPorDuracion(String vueloTxtOrigen, String vueloTxtDestino) {
             this.vueloTxtOrigen = vueloTxtOrigen;
@@ -176,7 +164,6 @@ public class MenuPrincipal extends JFrame {
             int numero = 1000 + generador.nextInt(2000);
 
 
-            String texto = "";
             try {
 
                 //calculoRutaMasCorta.porDuracion(vueloTxtOrigen, vueloTxtDestino);
@@ -196,8 +183,8 @@ public class MenuPrincipal extends JFrame {
 
     private class ProcesoRecorridoPorPrecio implements Runnable {
 
-        public String vueloTxtOrigen = " ";
-        public String vueloTxtDestino = " ";
+        public String vueloTxtOrigen;
+        public String vueloTxtDestino;
 
         public ProcesoRecorridoPorPrecio(String vueloTxtOrigen, String vueloTxtDestino) {
             this.vueloTxtOrigen = vueloTxtOrigen;

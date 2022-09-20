@@ -74,25 +74,13 @@ public class AeropuertoVista extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(56, 48, 48)));
 
         jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(evt -> jButton1ActionPerformed(evt));
 
 
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(evt -> jButton1ActionPerformed(evt));
 
         jButton2.setText("Eliminar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton2.addActionListener(evt -> jButton2ActionPerformed(evt));
 
         jButton3.setText("Modificar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {

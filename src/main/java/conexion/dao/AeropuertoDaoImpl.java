@@ -2,11 +2,10 @@ package conexion.dao;
 
 import conexion.DbManager;
 import modelo.Aeropuerto;
-import modelo.Vuelo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,16 +16,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AeropuertoDaoImpl implements Dao<Aeropuerto> {
-    private Connection connection;
+    private final Connection connection;
     //Declaración de variable para insertar valores a consultas
     private PreparedStatement preQuery;
     //Devuelve true si se ejecutó correctamente y false si algo falló
-    private boolean isSuccesfully = false;
+    private final boolean isSuccesfully = false;
     //Objeto que servirá para almacenar información al buscar un registro
     private Aeropuerto aeropuerto;
     //Lista de registros
     //Lista de registros
-    private List<Aeropuerto> aeropuertos;
+    private final List<Aeropuerto> aeropuertos;
     private final String[] QUERIES = {
             "INSERT INTO aeropuerto (codigo, ciudad, nombre) VALUES ( ?, ? , ? )",
             "SELECT * FROM aeropuerto WHERE id = ?;",
