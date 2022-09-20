@@ -44,7 +44,18 @@ public class AeropuertoDaoImpl implements Dao<Aeropuerto> {
 
     @Override
     public void insertar(Aeropuerto k) {
+        try {
+            preQuery = connection.prepareStatement(QUERIES[0]);
+            preQuery.setString(1, k.getCodigoAeropuerto());
+            preQuery.setString(2, k.getCiudad());
+            preQuery.setString(3, k.getNombre());
+            preQuery.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Se inserto correctamente");
 
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error:"+ e);
+        }
 
 
     }

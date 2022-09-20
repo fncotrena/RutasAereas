@@ -38,7 +38,7 @@ public class VentanaDetalleVuelo extends JFrame {
 		lblPrecio.setBounds(280, 74, 46, 14);
 		getContentPane().add(lblPrecio);
 
-		JLabel lblDuracion = new JLabel("Duracion");
+		JLabel lblDuracion = new JLabel("Duración");
 		lblDuracion.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblDuracion.setBounds(474, 74, 68, 14);
 		getContentPane().add(lblDuracion);
@@ -157,16 +157,22 @@ public class VentanaDetalleVuelo extends JFrame {
 
 
 	public void SetTextEscribir(GraphPath<Aeropuerto, Vuelo> grafo,String origen, String destino) {
+		int duracion=0;
+		textfdetalles.selectAll();
+		textfdetalles.setText("");
+		textFcant.setText(Integer.toString(grafo.getLength()));
 
 		textForigen.setText(origen);
 		textFdestino.setText(destino);
 		for (Vuelo vuelo  :grafo.getEdgeList()){
 			textfdetalles.append(vuelo.toString() + '\n');
 			textFprecio.setText("$" + Double.toString(vuelo.getPrecio()));
-
+             duracion+=vuelo.getHoraLlegada()-vuelo.getHoraSalida();
 			textFtiempo.setText(LocalTime.MIN.plus(Duration.ofMinutes(vuelo.getHoraSalida())).toString() + "-"
 					+ LocalTime.MIN.plus(Duration.ofMinutes(vuelo.getHoraLlegada())).toString());
 		}
+
+		textFduracion.setText(LocalTime.MIN.plus(Duration.ofMinutes(duracion)).toString() +"hs");
 
 	}
 }

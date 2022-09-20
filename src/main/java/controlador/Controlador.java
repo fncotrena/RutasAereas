@@ -9,6 +9,7 @@ import modelo.Vuelo;
 import org.jgrapht.GraphPath;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Controlador {
 
@@ -81,4 +82,18 @@ public class Controlador {
 
 
     }
+
+    public String[] aeropuestosComboBox() {
+        AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
+        int i = 0;
+        String[] AeropuertosList = new String[50];
+
+        for (Aeropuerto a : aeropuertoDao.obtenerTodos()) {
+            AeropuertosList[i]= a.getCiudad() +","+ a.getCodigoAeropuerto();
+            i++;
+        }
+        return AeropuertosList;
+
+    }
+
 }

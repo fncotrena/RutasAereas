@@ -26,7 +26,7 @@ public class MenuPrincipal extends JFrame {
 
 
     private final VentanaDetalleVuelo ventana = new VentanaDetalleVuelo();
-
+    private Controlador controlador = new Controlador();
     private final JPanel contentPane;
     public String VueloTxtOrigen = " ";
     public String VueloTxtDestino = " ";
@@ -39,8 +39,9 @@ public class MenuPrincipal extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JComboBox comboBoxDest = new JComboBox();
-        comboBoxDest.setModel(new DefaultComboBoxModel(new String[]{"Mar del Plata,MDQ", "Buenos Aires,AEP", "Usuahia,USH", "Rio Gallegos,RGL", "Puerto Iguazu,IGR", "El Calafate,FTE", "Resistencia,RES", "Posada,PSS", "Formosa,FMA", "Rio Grande,RGA", "Trelew,REL", "Buenos Aires,EZE", "Rosario,ROS", "Mendoza,MDZ", "Cordoba,COR", "Salta,SLA", "Bariloche,BRC", "Neuquen,NQN", "El Calafate,FTE", "Tucuman,TUC", "Santiago Del Estero,SDE", "La Rioja,IRJ", "Comodoro Rivadavia,CRD", "San Martin Andes,CPC", "Bahia Blanca,BHI", "San Juan,AUQ", "San Rafael,AFA", "San Luis,LUQ", "Rio Gallegos,RGL"}));
+        JComboBox<String> comboBoxDest = new JComboBox<String>();
+        comboBoxDest.setModel(new DefaultComboBoxModel<>(controlador.aeropuestosComboBox()
+        ));
         comboBoxDest.setBounds(237, 111, 176, 20);
         contentPane.add(comboBoxDest);
 
@@ -59,16 +60,16 @@ public class MenuPrincipal extends JFrame {
         LabelError.setBounds(44, 159, 384, 16);
         contentPane.add(LabelError);
 
-        JComboBox Tipo = new JComboBox();
+        JComboBox<String> Tipo = new JComboBox<String>();
         contentPane.add(Tipo);
         Tipo.setEnabled(true);
-        JComboBox comboBoxOrg = new JComboBox();
+        JComboBox<String> comboBoxOrg = new JComboBox<String>();
         comboBoxOrg.setBounds(25, 111, 176, 20);
         contentPane.add(comboBoxOrg);
 
-        comboBoxOrg.setModel(new DefaultComboBoxModel(new String[]{"Mar del Plata,MDQ", "Buenos Aires,AEP", "Usuahia,USH", "Rio Gallegos,RGL", "Puerto Iguazu,IGR", "El Calafate,FTE", "Resistencia,RES", "Posada,PSS", "Formosa,FMA", "Rio Grande,RGA", "Trelew,REL", "Buenos Aires,EZE", "Rosario,ROS", "Mendoza,MDZ", "Cordoba,COR", "Salta,SLA", "Bariloche,BRC", "Neuquen,NQN", "El Calafate,FTE", "Tucuman,TUC", "Santiago Del Estero,SDE", "La Rioja,IRJ", "Comodoro Rivadavia,CRD", "San Martin Andes,CPC", "Bahia Blanca,BHI", "San Juan,AUQ", "San Rafael,AFA", "San Luis,LUQ", "Rio Gallegos,RGL"}));
+        comboBoxOrg.setModel(new DefaultComboBoxModel<>(controlador.aeropuestosComboBox()));
 
-        Tipo.setModel(new DefaultComboBoxModel(new String[]{"Duracion", "Precio", "Escalas"}));
+        Tipo.setModel(new DefaultComboBoxModel<>(new String[]{"Duración", "Precio", "Escalas"}));
         Tipo.setBounds(54, 44, 89, 20);
         JButton btnNewButton_1 = new JButton("Salir");
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -102,11 +103,9 @@ public class MenuPrincipal extends JFrame {
            VueloTxtOrigen = comboBoxOrg.getSelectedItem().toString();
             VueloTxtDestino = comboBoxDest.getSelectedItem().toString();
 
-         //   VueloTxtOrigen = "MQP";
-         //   VueloTxtDestino = "AEP";
-
 
             if (VueloTxtOrigen.equals(VueloTxtDestino)) {
+
                 LabelError.setVisible(true);
             } else {
                 LabelError.setVisible(false);
@@ -116,7 +115,7 @@ public class MenuPrincipal extends JFrame {
                     switch (Objects.requireNonNull(Tipo.getSelectedItem()).toString()) {
                         case "Precio" -> {
                            // CalculoRutaMasCorta calculoRutaMasCorta = new CalculoRutaMasCorta();
-                         //   System.out.println( calculoRutaMasCorta.porPrecio("MDQ","AEP"));
+                           System.out.println(vueloOrigen+ vueloDestino);
                             ProcesoRecorridoPorPrecio procesoRecorridoPorPrecio = new ProcesoRecorridoPorPrecio(vueloOrigen, vueloDestino);
                             procesoRecorridoPorPrecio.run();
                             System.out.println(VueloTxtOrigen);
@@ -155,6 +154,8 @@ public class MenuPrincipal extends JFrame {
 
     }
 
+
+
     private class ProcesoRecorridoPorDuracion implements Runnable {
 
         public String vueloTxtOrigen = " ";
@@ -172,7 +173,7 @@ public class MenuPrincipal extends JFrame {
         public void run() {
             Random generador = new Random();
             // genera un numero aleatorio entre el 1000 y el 5000
-           // int numero = 1000 + generador.nextInt(2000);
+            int numero = 1000 + generador.nextInt(2000);
 
 
             String texto = "";
@@ -180,12 +181,12 @@ public class MenuPrincipal extends JFrame {
 
                 //calculoRutaMasCorta.porDuracion(vueloTxtOrigen, vueloTxtDestino);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
-                Thread.sleep(1);
+                Thread.sleep(numero);
 
                 ventana.SetTextEscribir(controlador.MostrarRutaPorDuracion(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
                 setVisible(true);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
-                Thread.sleep(1);
+                Thread.sleep(numero);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -203,7 +204,6 @@ public class MenuPrincipal extends JFrame {
             this.vueloTxtDestino = vueloTxtDestino;
         }
 
-        CalculoRutaMasCorta calculoRutaMasCorta = new CalculoRutaMasCorta();
 
 
         @Override
@@ -214,9 +214,8 @@ public class MenuPrincipal extends JFrame {
             Controlador controlador = new  Controlador();
 
 
-            String texto = "";
             try {
-                System.out.println(calculoRutaMasCorta.porPrecio(vueloTxtOrigen, vueloTxtDestino));
+                //System.out.println(controlador.MostraRutaPorPrecio(vueloTxtOrigen, vueloTxtDestino);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(numero);
                 System.out.println("origen "+vueloTxtOrigen+"destino"+vueloTxtDestino);

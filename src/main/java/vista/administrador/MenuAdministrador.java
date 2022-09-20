@@ -1,7 +1,6 @@
 package vista.administrador;
 
-import vista.VentanaDetalleVuelo;
-import vista.administrador.adminCrud.AerepuertoVista;
+import vista.administrador.adminCrud.AeropuertoVista;
 import vista.administrador.adminCrud.VueloVista;
 
 import javax.swing.*;
@@ -10,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuAdministrador extends JFrame{
-
-    private final VentanaDetalleVuelo ventana = new VentanaDetalleVuelo();
 
     private final JPanel contentPane;
    public MenuAdministrador() {
@@ -22,7 +19,7 @@ public class MenuAdministrador extends JFrame{
        setContentPane(contentPane);
        contentPane.setLayout(null);
 
-       JButton btnNewButton_1 = new JButton("Salir");
+       JButton btnNewButton_1 = new JButton("Cerrar");
 
        btnNewButton_1.setBounds(68, 211, 89, 23);
        contentPane.add(btnNewButton_1);
@@ -47,8 +44,15 @@ public class MenuAdministrador extends JFrame{
        btnAeropuertos.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               AerepuertoVista objetoVista = new AerepuertoVista();
+               AeropuertoVista objetoVista = new AeropuertoVista();
                objetoVista.setVisible(true);
+           }
+       });
+
+       btnNewButton_1.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               setVisible(false);
            }
        });
    }
