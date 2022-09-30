@@ -1,12 +1,11 @@
+package test.java;
+
+import modelo.Aeropuerto;
 import modelo.Vuelo;
-import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 import org.jgrapht.graph.Multigraph;
 
-import modelo.Aeropuerto;
-
-import java.util.List;
 import java.util.Set;
 
 //prueba de libreria jgraph

@@ -1,3 +1,5 @@
+package test.java;
+
 import modelo.Aeropuerto;
 import modelo.Vuelo;
 import org.jgrapht.graph.Multigraph;
