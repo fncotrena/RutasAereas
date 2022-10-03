@@ -3,7 +3,7 @@ package controlador;
 
 import conexion.dao.AeropuertoDaoImpl;
 import conexion.dao.VueloDaoImpl;
-import logica.CalculoRutaMasCorta;
+import logica.Calculo;
 import modelo.Aeropuerto;
 import modelo.Vuelo;
 import org.jgrapht.GraphPath;
@@ -19,13 +19,13 @@ public class Controlador {
 
 
     public GraphPath<Aeropuerto, Vuelo> MostrarRutaPorDuracion(String vueloTxtOrigen, String vueloTxtDestino) {
-        CalculoRutaMasCorta calculoRutaMasCorta = new CalculoRutaMasCorta();
-        return calculoRutaMasCorta.porDuracion(vueloTxtOrigen,vueloTxtDestino);
+        Calculo calculo = new Calculo();
+        return calculo.porDuracion(vueloTxtOrigen,vueloTxtDestino);
     }
 
     public GraphPath<Aeropuerto, Vuelo> MostraRutaPorPrecio(String vueloTxtOrigen, String vueloTxtDestino) {
-        CalculoRutaMasCorta calculoRutaMasCorta = new CalculoRutaMasCorta();
-        return calculoRutaMasCorta.porPrecio(vueloTxtOrigen,vueloTxtDestino);
+        Calculo calculo = new Calculo();
+        return calculo.porPrecio(vueloTxtOrigen,vueloTxtDestino);
     }
 
     public void modificarAeropuerto(String text, String text1, String text2) {

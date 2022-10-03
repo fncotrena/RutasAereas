@@ -8,12 +8,12 @@ import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
 
-public class CalculoRutaMasCorta {
+public class Calculo {
     VueloDaoImpl v = new VueloDaoImpl();
     AeropuertoDaoImpl aeropuertoDao = new AeropuertoDaoImpl();
 
 
-    public CalculoRutaMasCorta() {
+    public Calculo() {
 
     }
 

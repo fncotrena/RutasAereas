@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-181.0" y="132.0">logica.Calculo</node>
+    <node x="391.0" y="132.0">aplicacion.Constante</node>
+    <node x="468.0" y="279.0">conexion.dao.Dao</node>
+    <node x="64.0" y="132.0">datos.CargaDeDatos</node>
+    <node x="89.0" y="279.0">conexion.DbManager</node>
+    <node x="-181.0" y="181.0">controlador.Controlador</node>
+    <node x="-63.0" y="230.0">modelo.Aeropuerto</node>
+    <node x="-67.0" y="279.0">conexion.factory.DaoFactory</node>
+    <node x="430.0" y="34.0">conexion.dao.AeropuertoDaoImpl</node>
+    <node x="556.0" y="-15.0">conexion.dao.VueloDaoImpl</node>
+    <node x="-181.0" y="230.0">modelo.Vuelo</node>
+    <node x="-181.0" y="83.0">vista.MenuPrincipal</node>
+    <node x="248.0" y="279.0">vista.VentanaDetalleVuelo</node>
+    <node x="-52.0" y="132.0">vista.Panel</node>
+    <node x="241.0" y="132.0">aplicacion.Aplicacion</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="conexion.dao.AeropuertoDaoImpl" target="conexion.dao.Dao" relationship="REALIZATION">
+      <point x="0.0" y="14.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+    <edge source="conexion.dao.VueloDaoImpl" target="conexion.dao.Dao" relationship="REALIZATION">
+      <point x="0.0" y="14.5" />
+      <point x="629.0" y="254.5" />
+      <point x="522.0" y="254.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.4983388704318936" showDependencies="false" x="270.4999999999999" y="156.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
