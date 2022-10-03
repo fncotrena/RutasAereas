@@ -7,8 +7,13 @@ import logica.CalculoRutaMasCorta;
 import modelo.Aeropuerto;
 import modelo.Vuelo;
 import org.jgrapht.GraphPath;
+import vista.VentanaDetalleVuelo;
 
 import javax.swing.*;
+import java.awt.*;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Controlador {
 
@@ -95,4 +100,26 @@ public class Controlador {
 
     }
 
+
+    public void escribirDatos(GraphPath<Aeropuerto, Vuelo> mostrarRuta, String vueloTxtOrigen, String vueloTxtDestino, VentanaDetalleVuelo ventana) {
+        int duracion=0;
+        JTextField textFprecio= new JTextField();
+         TextArea textfdetalles = new TextArea();
+         JTextField textFtiempo=new JTextField();
+         int precio=0;
+        ArrayList<Vuelo> vuelos= new ArrayList<>();
+        for (Vuelo vuelo  :mostrarRuta.getEdgeList()){
+            vuelos.add(vuelo);
+            textfdetalles.append(vuelo.toString() + '\n');
+            precio += vuelo.getPrecio();
+
+
+        }
+        textFtiempo.setText(LocalTime.MIN.plus(Duration.ofMinutes(vuelos.get(0).getHoraSalida())).toString() + "-"
+                + LocalTime.MIN.plus(Duration.ofMinutes(vuelos.get(vuelos.size()-1).getHoraLlegada())).toString());
+        textFprecio.setText("$" + Double.toString(precio));
+        duracion=vuelos.get(vuelos.size()-1).getHoraLlegada()-vuelos.get(0).getHoraSalida();
+
+        ventana.setTextEscribir(mostrarRuta.getLength(),textFprecio,textfdetalles,textFtiempo,duracion,vueloTxtOrigen,vueloTxtDestino);
+    }
 }

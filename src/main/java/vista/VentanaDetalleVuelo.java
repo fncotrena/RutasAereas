@@ -128,50 +128,20 @@ public class VentanaDetalleVuelo extends JFrame {
 		});
 
 	}
-/*
-	public void SetTextDetalles(List<Aeropuerto> datosAeropuertos, List<Vuelo> datosVuelos) {
-		int duracion=0;
-		
-		duracion= datosVuelos.get(datosVuelos.size()-1).getLlegada() -datosVuelos.get(0).getSalida();
-		textFprecio.setText("$" + Double.toString(datosVuelos.get(0).getPrecio()));	
-		textFduracion.setText(LocalTime.MIN.plus(Duration.ofMinutes(duracion)).toString() +"hs");	
-		textFtiempo.setText(LocalTime.MIN.plus(Duration.ofMinutes(datosVuelos.get(0).getSalida())).toString() + "-"
-				+ LocalTime.MIN.plus(Duration.ofMinutes(datosVuelos.get(datosVuelos.size() - 1).getLlegada())).toString());
-				
+
+
+
+
+
+	public void setTextEscribir(int length, JTextField precio, TextArea detalles, JTextField tiempo, int duracion, String vueloTxtOrigen, String vueloTxtDestino) {
 		textfdetalles.selectAll();
 		textfdetalles.setText("");
-		
-		
-		if (datosAeropuertos.size() == 2) {
-			textFcant.setText("Directo");
-		} else
-			textFcant.setText(Integer.toString(datosAeropuertos.size() - 2));
-
-		for (Aeropuerto a : datosAeropuertos) {
-		//// for(Vuelo v: datosVuelos ) {
-			textfdetalles.append(a.toString() + '\n');
-	//	textfdetalles.append(v.toString() + '\n');}}
-		}	
-
-	}*/
-
-
-	public void SetTextEscribir(GraphPath<Aeropuerto, Vuelo> grafo,String origen, String destino) {
-		int duracion=0;
-		textfdetalles.selectAll();
-		textfdetalles.setText("");
-		textFcant.setText(Integer.toString(grafo.getLength()));
-
-		textForigen.setText(origen);
-		textFdestino.setText(destino);
-		for (Vuelo vuelo  :grafo.getEdgeList()){
-			textfdetalles.append(vuelo.toString() + '\n');
-			textFprecio.setText("$" + Double.toString(vuelo.getPrecio()));
-             duracion+=vuelo.getHoraLlegada()-vuelo.getHoraSalida();
-			textFtiempo.setText(LocalTime.MIN.plus(Duration.ofMinutes(vuelo.getHoraSalida())).toString() + "-"
-					+ LocalTime.MIN.plus(Duration.ofMinutes(vuelo.getHoraLlegada())).toString());
-		}
-
+		textfdetalles.setText(detalles.getText());
+		textFcant.setText(Integer.toString(length));
+		textForigen.setText(vueloTxtOrigen);
+		textFdestino.setText(vueloTxtDestino);
+		textFprecio.setText(precio.getText());
+		textFtiempo.setText(tiempo.getText());
 		textFduracion.setText(LocalTime.MIN.plus(Duration.ofMinutes(duracion)).toString() +"hs");
 
 	}

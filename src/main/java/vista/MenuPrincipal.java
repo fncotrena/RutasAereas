@@ -169,8 +169,8 @@ public class MenuPrincipal extends JFrame {
                 //calculoRutaMasCorta.porDuracion(vueloTxtOrigen, vueloTxtDestino);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(numero);
-
-                ventana.SetTextEscribir(controlador.MostrarRutaPorDuracion(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
+                  controlador.escribirDatos(controlador.MostrarRutaPorDuracion(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino,ventana);
+                //ventana.SetTextEscribir(controlador.MostrarRutaPorDuracion(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
                 setVisible(true);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(numero);
@@ -206,8 +206,8 @@ public class MenuPrincipal extends JFrame {
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(numero);
                 System.out.println("origen "+vueloTxtOrigen+"destino"+vueloTxtDestino);
+                controlador.escribirDatos(controlador.MostraRutaPorPrecio(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino,ventana);
 
-                ventana.SetTextEscribir(controlador.MostraRutaPorPrecio(vueloTxtOrigen, vueloTxtDestino),vueloTxtOrigen,vueloTxtDestino);
                 setVisible(true);
                 //realiza un pausa de un tiempo expresado en milisegundos determiando
                 Thread.sleep(numero);
